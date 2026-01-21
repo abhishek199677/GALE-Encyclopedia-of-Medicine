@@ -128,3 +128,7 @@ open up localhost:
    - ECR_REPO
    - PINECONE_API_KEY
    - OPENAI_API_KEY
+
+
+
+<!-- pcsk_5Rgf4j_A3yvFC7nXNuPGLbE5CMfngqjBGDEFUgrhPnvDgU3fdCVk766E6CefKbAHudBwG -->

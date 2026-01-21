@@ -7,10 +7,16 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 from src.prompt import *
+from pinecone import Pinecone
+
+
+
 import os
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 
-app = Flask(__name__)
+
+app = Flask(__name__);
 
 
 load_dotenv()
@@ -24,19 +30,18 @@ os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 embeddings = download_hugging_face_embeddings()
 
-index_name = "medical-chatbot" 
+index_name = "encyclopedia-medical-chatbot" 
 # Embed each chunk and upsert the embeddings into your Pinecone index.
-docsearch = PineconeVectorStore.from_existing_index(
+docsearch = PineconeVectorStore(
     index_name=index_name,
-    embedding=embeddings
+    embedding=embeddings,
+    pinecone_api_key=PINECONE_API_KEY
 )
-
-
 
 
 retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k":3})
 
-chatModel = ChatOpenAI(model="gpt-4o")
+chatModel = ChatOpenAI()
 prompt = ChatPromptTemplate.from_messages(
     [
         ("system", system_prompt),
@@ -65,6 +70,7 @@ def chat():
     return str(response["answer"])
 
 
-
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port= 8080, debug= True)
+    port = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port=port, debug=False)
+
