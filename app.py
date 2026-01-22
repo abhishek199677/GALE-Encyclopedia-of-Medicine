@@ -11,6 +11,8 @@ from pinecone import Pinecone
 
 
 
+
+
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
@@ -73,4 +75,3 @@ def chat():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port=port, debug=False)
-
