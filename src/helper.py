@@ -1,9 +1,8 @@
-from langchain.document_loaders import PyPDFLoader, DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
 from typing import List
 from langchain.schema import Document
-
+from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
 
 #Extract Data From the PDF File
 def load_pdf_file(data):
@@ -14,7 +13,6 @@ def load_pdf_file(data):
     documents=loader.load()
 
     return documents
-
 
 
 def filter_to_minimal_docs(docs: List[Document]) -> List[Document]:
