@@ -10,22 +10,16 @@ https://github.com/abhishek199677/GALE-Encyclopedia-of-Medicine.git
 ```
 ### STEP 01- Create a conda environment after opening the repository
 
-```bash
-conda create -n medibot python=3.10 -y
-```
-
-```bash
-conda activate medibot
-```
-
-
-### STEP 02- install the requirements
-```bash
-pip install -r requirements.txt
+```cmd
+uv init
+uv venv
+.venv\Scripts\activate
+uv add -r requirements.txt
 ```
 
 
-### Create a `.env` file in the root directory and add your Pinecone & openai credentials as follows:
+
+###  STEP 02- Create a `.env` file in the root directory and add your Pinecone & openai credentials as follows:
 
 ```ini
 PINECONE_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
