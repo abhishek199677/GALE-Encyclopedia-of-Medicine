@@ -8,6 +8,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 from src.prompt import *
 from pinecone import Pinecone
+from langchain_community.vectorstores import Pinecone
 from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
 
 
